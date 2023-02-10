@@ -1,0 +1,9 @@
+name: send message to Wecom Bot
+
+on:
+  workflow_run:
+    types: [completed]
+
+jobs:
+  run-unit-test:
+    run: ./auto/test
