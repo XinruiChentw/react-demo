@@ -2,7 +2,7 @@ name: push images to ECR
 
 on:
   workflow_run:
-    workflows: [ 'unit-test' ]
+    workflows: [ 'push images to docker hub' ]
     types: [ completed ]
 
 permissions:

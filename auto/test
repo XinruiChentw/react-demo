@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
 set -eu
 
-npm ci
-npm run build
-npm run test
+npm run test -- --watchAll=false

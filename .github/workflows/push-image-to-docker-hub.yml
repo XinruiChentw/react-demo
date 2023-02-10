@@ -1,6 +1,9 @@
-name: push images to ECR
+name: push images to docker hub
 
 on:
+  workflow_run:
+    workflows: [ 'unit-test' ]
+    types: [ completed ]
 
 permissions:
   id-token: write
@@ -8,7 +11,7 @@ permissions:
 
 jobs:
   ECR-task:
-    name: Build image and push to ecr
+    name: Build image and push to docker hub
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
