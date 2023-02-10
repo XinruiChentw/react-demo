@@ -1,6 +1,9 @@
 name: push images to ECR
 
 on:
+  workflow_run:
+    workflows: [ 'unit-test' ]
+    types: [ completed ]
 
 permissions:
   id-token: write
