@@ -1,6 +1,6 @@
 name: push images to ECR
 
-on: [push]
+on:
 
 permissions:
   id-token: write
