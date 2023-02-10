@@ -1,8 +1,6 @@
-name: send message to Wecom Bot
+name: unit-test
 
-on:
-  workflow_run:
-    types: [completed]
+on: [push]
 
 jobs:
   run-unit-test:
