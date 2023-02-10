@@ -12,4 +12,8 @@ jobs:
         with:
           ref: ${{ github.ref }}
 
-      - run: ./auto/test
+      - name: Build
+        run: |
+            npm ci
+            npm run build
+            npm run test
