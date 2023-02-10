@@ -4,4 +4,13 @@ on: [push]
 
 jobs:
   run-unit-test:
-    run: ./auto/test
+    name: run unit-test
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
+
+    run:
+        ./auto/test
