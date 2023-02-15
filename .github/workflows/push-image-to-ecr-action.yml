@@ -1,9 +1,6 @@
 name: push images to ECR
 
-on:
-  workflow_run:
-    workflows: [ 'push images to docker hub' ]
-    types: [ completed ]
+on: [push]
 
 permissions:
   id-token: write
