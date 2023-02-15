@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -e
+
+wecom_bot_webhook="wecom_webhook_url"
+
+message_to_send() {
+  cat <<EOF
+{
+    "msgtype": "text",
+    "text": {
+        "content": "OMG! Pipeline failed!",
+        "mentioned_list":["@all"],
+        "mentioned_mobile_list":["@all"]
+    }
+}
+EOF
+}
+
+
+# POST request to Discord Webhook
+curl -H "Content-Type: application/json" -X POST -d "$(message_to_send)" $wecom_bot_webhook

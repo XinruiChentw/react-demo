@@ -1,33 +1,45 @@
 name: push images to docker hub
 
-on:
-  workflow_run:
-    workflows: [ 'unit-test' ]
-    types: [ completed ]
+on: [push]
 
 permissions:
   id-token: write
   contents: read
 
+input:
+  docker_name: ${{ secrets.DOCKER_USERNAME }}
+  docker_password: ${{ secrets.DOCKER_PASSWORD }}
+
 jobs:
-  ECR-task:
-    name: Build image and push to docker hub
+  Unit test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          ref: ${{ github.ref }}
+      - name: run-unit-test
+        id: unit-test
+        run: ./auto/test
+      - name: send-failure-message
+        if: ${{ failure() && steps.unit-test.conclusion == 'failure' }}
+        run: ./auto/send_message
 
+
+  Build image and push to docker hub:
+    needs: [ unit-test ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: input.docker_name
+          password: input.docker_password
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
+        uses: docker/metadata-action@v2
         with:
           images: xinruichen/react_docker_learn_xr
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
@@ -35,3 +47,6 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: send-failure-message
+        if: ${{ failure() }}
+        run: ./auto/send_message
