@@ -6,7 +6,7 @@ permissions:
   id-token: write
   contents: read
 
-input:
+env:
   docker_name: ${{ secrets.DOCKER_USERNAME }}
   docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
@@ -33,8 +33,8 @@ jobs:
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
-          username: input.docker_name
-          password: input.docker_password
+          username: ${{ env.docker_name }}
+          password: ${{ env.docker_password }}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v2
