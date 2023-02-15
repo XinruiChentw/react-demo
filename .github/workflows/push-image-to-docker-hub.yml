@@ -11,7 +11,7 @@ env:
   docker_password: ${{ secrets.DOCKER_PASSWORD }}
 
 jobs:
-  Unit test:
+  unit-test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -25,7 +25,7 @@ jobs:
         run: ./auto/send_message
 
 
-  Build image and push to docker hub:
+  build-image-and-push-to-docker-hub:
     needs: [ unit-test ]
     runs-on: ubuntu-latest
     steps:
