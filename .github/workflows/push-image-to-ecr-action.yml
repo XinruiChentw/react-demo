@@ -32,3 +32,7 @@ jobs:
         run: |
           docker build -t $REGISTRY/$REPOSITORY:$IMAGE_TAG .
           docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG
+
+      - name: send-failure-message
+        if: ${{ failure() }}
+        run: ./auto/send_message
