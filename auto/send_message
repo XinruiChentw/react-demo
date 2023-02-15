@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-wecom_bot_webhook="wecom_webhook_url"
+wecom_bot_webhook="https://webhook.site/654d7019-1713-4d17-963f-e83a660a185b"
 
 message_to_send() {
   cat <<EOF
