@@ -2,16 +2,17 @@
 set -e
 
 message_to_send() {
+  SHORT_SHA=`echo $commit | cut -c1-8`
   cat <<EOF
 {
     "msgtype": "markdown",
     "markdown": {
         "content": "Ooops!! The pipeline failed. \n
-         >commit id: <font color=\"comment\">$commit</font>
+         >commit id: <font color=\"comment\">[$SHORT_SHA](https://github.com/$repository/commit/$commit)</font>
          >repository: <font color=\"comment\">$repository</font>
          >branch: <font color=\"comment\">$branch</font>
          >person: <font color=\"comment\">$person</font> \n
-    You can check it here [failed pipeline](https://github.com/$repository/actions/runs/$action_id)"
+         You can check it here [failed pipeline](https://github.com/$repository/actions/runs/$action_id)"
     }
 }
 EOF

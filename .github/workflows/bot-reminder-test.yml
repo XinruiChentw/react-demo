@@ -1,9 +1,6 @@
 name: bot-reminder-test
 on: [push]
 
-env:
-  webhook_url: echo ${{ secrets.WEBHOOK_URL }} | base64 --decode
-
 jobs:
   bot:
     runs-on: ubuntu-latest
