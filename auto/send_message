@@ -11,7 +11,7 @@ message_to_send() {
          >commit id: <font color=\"comment\">[$SHORT_SHA](https://github.com/$repository/commit/$commit)</font>
          >repository: <font color=\"comment\">$repository</font>
          >branch: <font color=\"comment\">$branch</font>
-         >person: <font color=\"comment\">$person</font> \n
+         >person: <font color=\"comment\">$person</font>
          \nYou can check it here [failed pipeline](https://github.com/$repository/actions/runs/$action_id)"
     }
 }
