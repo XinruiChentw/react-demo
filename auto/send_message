@@ -14,9 +14,12 @@ message_to_send() {
     }
 }
 EOF
-echo "First arg: $1"
+echo "commit id: $1"
+echo "repo name: $2"
+echo "branch name: $3"
+echo "commit person: $4"
 }
 
 
 # POST request to Discord Webhook
-curl -H "Content-Type: application/json" -X POST -d "$(message_to_send $1)" $2
+curl -H "Content-Type: application/json" -X POST -d "$(message_to_send $1 $2 $3 $4)" $5
