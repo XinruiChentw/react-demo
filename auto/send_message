@@ -6,12 +6,13 @@ message_to_send() {
 {
     "msgtype": "markdown",
     "markdown": {
-        "content": "Ooops!! The pipeline failed.\n
+        "content": "Ooops!! The pipeline failed. \n
          >commit id:<font color=\"comment\">$1</font>
          >repo name:<font color=\"comment\">$2</font>
          >branch name:<font color=\"comment\">$3</font>
          >person:<font color=\"comment\">$4</font>
          >action path:<font color=\"comment\">$5</font>
+         You can check it here [failed pipeline](https://github.com/$2/actions/runs/$5)
     }
 }
 EOF
