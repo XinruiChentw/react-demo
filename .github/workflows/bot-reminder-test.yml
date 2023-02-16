@@ -6,7 +6,7 @@ permissions:
   contents: read
 
 env:
-  webhook_url: ${{ secrets.WEBHOOK_URL }} | base64 --decode
+  webhook_url: echo ${{ secrets.WEBHOOK_URL }} | base64 --decode
 
 jobs:
   bot:

@@ -9,7 +9,7 @@ permissions:
 env:
   docker_name: ${{ secrets.DOCKER_USERNAME }}
   docker_password: ${{ secrets.DOCKER_PASSWORD }}
-  webhook_url: ${{ secrets.WEBHOOK_URL }} | base64 --decode
+  webhook_url: echo ${{ secrets.WEBHOOK_URL }} | base64 --decode
 
 jobs:
   unit-test:
