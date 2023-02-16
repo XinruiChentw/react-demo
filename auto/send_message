@@ -6,13 +6,13 @@ set -e
 message_to_send() {
   cat <<EOF
 {
-    "msgtype": "text",
-    "text": {
-        "content": "OMG! Pipeline failed!",
-        "mentioned_list":["@all"],
-        "mentioned_mobile_list":["@all"]
+    "msgtype": "markdown",
+    "markdown": {
+        "content": "Ops!!Pipeline failed\n
+         >commit id:<font color=\"comment\">$1</font>
     }
 }
+
 EOF
 echo "commit id: $1"
 echo "repo name: $2"
@@ -20,6 +20,4 @@ echo "branch name: $3"
 echo "commit person: $4"
 }
 
-
-# POST request to Discord Webhook
 curl -H "Content-Type: application/json" -X POST -d "$(message_to_send $1 $2 $3 $4)" $5
