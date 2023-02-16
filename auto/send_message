@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-
-
 message_to_send() {
   cat <<EOF
 {
@@ -15,7 +13,6 @@ message_to_send() {
          >person:<font color=\"comment\">$4</font>
     }
 }
-
 EOF
 }
 
