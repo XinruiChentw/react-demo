@@ -12,7 +12,7 @@ message_to_send() {
          >repository: <font color=\"comment\">$repository</font>
          >branch: <font color=\"comment\">$branch</font>
          >person: <font color=\"comment\">$person</font> \n
-         You can check it here [failed pipeline](https://github.com/$repository/actions/runs/$action_id)"
+         \nYou can check it here [failed pipeline](https://github.com/$repository/actions/runs/$action_id)"
     }
 }
 EOF
