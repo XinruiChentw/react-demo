@@ -32,4 +32,4 @@ jobs:
 
       - name: send-failure-message
         if: ${{ failure() }}
-        run: ./auto/send_message
+        run: ./auto/send_message ${{ github.sha }} ${{ github.repository }} ${{ github.ref_name}} ${{ github.actor}} ${{ github.run_id }} "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f297edbe-7736-4fe9-bad2-8db4047d8f6f"
