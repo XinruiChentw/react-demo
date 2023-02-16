@@ -10,4 +10,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: ./auto/send_message ${{ github.sha }} ${{ github.repository }} ${{ github.ref_name}} ${{ github.actor}} ${{ github.action_path }}"https://webhook.site/654d7019-1713-4d17-963f-e83a660a185b"
+      - run: ./auto/send_message ${{ github.sha }} ${{ github.repository }} ${{ github.ref_name}} ${{ github.actor}} ${{ github.action.path }}"https://webhook.site/654d7019-1713-4d17-963f-e83a660a185b"
