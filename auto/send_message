@@ -8,11 +8,11 @@ message_to_send() {
     "markdown": {
         "content": "Ooops!! The pipeline failed. \n
          >commit id:<font color=\"comment\">$1</font>
-         >repo name:<font color=\"comment\">$2</font>
-         >branch name:<font color=\"comment\">$3</font>
+         >repository:<font color=\"comment\">$2</font>
+         >branch:<font color=\"comment\">$3</font>
          >person:<font color=\"comment\">$4</font>
          >action path:<font color=\"comment\">$5</font>
-         You can check it here [failed pipeline](https://github.com/$2/actions/runs/$5)
+         You can check it here [failed pipeline](https://github.com/$2/actions/runs/$5)"
     }
 }
 EOF
