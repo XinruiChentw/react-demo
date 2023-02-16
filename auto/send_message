@@ -22,4 +22,4 @@ echo "branch name: $3"
 
 
 # POST request to Discord Webhook
-curl -H "Content-Type: application/json" -X POST -d "$(message_to_send $1 $2)" $3
+curl -H "Content-Type: application/json" -X POST -d "$(message_to_send $1 $2 $3)" $4
