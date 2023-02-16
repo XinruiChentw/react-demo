@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-wecom_bot_webhook="https://webhook.site/654d7019-1713-4d17-963f-e83a660a185b"
+
 
 message_to_send() {
   cat <<EOF
@@ -14,8 +14,9 @@ message_to_send() {
     }
 }
 EOF
+echo "First arg: $1"
 }
 
 
 # POST request to Discord Webhook
-curl -H "Content-Type: application/json" -X POST -d "$(message_to_send)" $wecom_bot_webhook
+curl -H "Content-Type: application/json" -X POST -d "$(message_to_send $1)" $2

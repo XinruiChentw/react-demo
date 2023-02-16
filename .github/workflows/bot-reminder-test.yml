@@ -1,0 +1,11 @@
+name: bot-reminder-test
+on: [push]
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    run: ./auto/send_message ${{ github.sha }} "https://webhook.site/654d7019-1713-4d17-963f-e83a660a185b"
