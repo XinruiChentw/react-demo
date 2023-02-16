@@ -6,6 +6,9 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  webhook_url: ${{ secrets.WEBHOOK_URL }} | base64 --decode
+
 jobs:
   ECR-task:
     name: Build image and push to ecr
@@ -32,4 +35,4 @@ jobs:
 
       - name: send-failure-message
         if: ${{ failure() }}
-        run: ./auto/send_message ${{ github.sha }} ${{ github.repository }} ${{ github.ref_name}} ${{ github.actor}} ${{ github.run_id }} "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f297edbe-7736-4fe9-bad2-8db4047d8f6f"
+        run: ./auto/send_message ${{ github.sha }} ${{ github.repository }} ${{ github.ref_name}} ${{ github.actor}} ${{ github.run_id }}

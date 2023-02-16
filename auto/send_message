@@ -10,7 +10,7 @@ message_to_send() {
          >commit id: <font color=\"comment\">$1</font>
          >repository: <font color=\"comment\">$2</font>
          >branch: <font color=\"comment\">$3</font>
-         >person: <font color=\"comment\">$4</font>
+         >person: <font color=\"comment\">$4</font> \n
     You can check it here [failed pipeline](https://github.com/$2/actions/runs/$5)"
     }
 }

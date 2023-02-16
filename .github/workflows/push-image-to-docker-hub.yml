@@ -9,6 +9,7 @@ permissions:
 env:
   docker_name: ${{ secrets.DOCKER_USERNAME }}
   docker_password: ${{ secrets.DOCKER_PASSWORD }}
+  webhook_url: ${{ secrets.WEBHOOK_URL }} | base64 --decode
 
 jobs:
   unit-test:
@@ -49,4 +50,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
       - name: send-failure-message
         if: ${{ failure() }}
-        run: ./auto/send_message ${{ github.sha }} ${{ github.repository }} ${{ github.ref_name}} ${{ github.actor}} ${{ github.run_id }} "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=f297edbe-7736-4fe9-bad2-8db4047d8f6f"
+        run: ./auto/send_message ${{ github.sha }} ${{ github.repository }} ${{ github.ref_name}} ${{ github.actor}} ${{ github.run_id }}
