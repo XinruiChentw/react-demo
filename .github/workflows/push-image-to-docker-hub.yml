@@ -9,6 +9,13 @@ env:
 jobs:
   unit-test:
     runs-on: ubuntu-latest
+    env:
+      commit: ${{ github.sha }}
+      repository: ${{ github.repository }}
+      branch: ${{ github.ref_name}}
+      person: ${{ github.actor}}
+      action_id: ${{ github.run_id }}
+      webhook_url: ${{ secrets.WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -24,6 +31,13 @@ jobs:
   build-image-and-push-to-docker-hub:
     needs: [ unit-test ]
     runs-on: ubuntu-latest
+    env:
+      commit: ${{ github.sha }}
+      repository: ${{ github.repository }}
+      branch: ${{ github.ref_name}}
+      person: ${{ github.actor}}
+      action_id: ${{ github.run_id }}
+      webhook_url: ${{ secrets.WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v3
       - name: Log in to Docker Hub
