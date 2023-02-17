@@ -44,11 +44,6 @@ jobs:
   send-message-to-bot:
     runs-on: ubuntu-latest
     env:
-      commit: ${{ github.sha }}
-      repository: ${{ github.repository }}
-      branch: ${{ github.ref_name}}
-      person: ${{ github.actor}}
-      action_id: ${{ github.run_id }}
       webhook_url: ${{ secrets.WEBHOOK_URL }}
     if: ${{ always() && contains(needs.*.result, 'failure') }}
     needs: [unit-test, build-image-and-push-to-docker-hub]
