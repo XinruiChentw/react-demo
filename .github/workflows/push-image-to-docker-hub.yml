@@ -9,13 +9,6 @@ env:
 jobs:
   unit-test:
     runs-on: ubuntu-latest
-    env:
-      commit: ${{ github.sha }}
-      repository: ${{ github.repository }}
-      branch: ${{ github.ref_name}}
-      person: ${{ github.actor}}
-      action_id: ${{ github.run_id }}
-      webhook_url: ${{ secrets.WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -23,21 +16,11 @@ jobs:
       - name: run-unit-test
         id: unit-test
         run: ./auto/test
-      - name: send-failure-message
-        if: ${{ failure() && steps.unit-test.conclusion == 'failure' }}
-        run: ./auto/send_message
 
 
   build-image-and-push-to-docker-hub:
     needs: [ unit-test ]
     runs-on: ubuntu-latest
-    env:
-      commit: ${{ github.sha }}
-      repository: ${{ github.repository }}
-      branch: ${{ github.ref_name}}
-      person: ${{ github.actor}}
-      action_id: ${{ github.run_id }}
-      webhook_url: ${{ secrets.WEBHOOK_URL }}
     steps:
       - uses: actions/checkout@v3
       - name: Log in to Docker Hub
@@ -57,6 +40,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: send-failure-message
-        if: ${{ failure() }}
-        run: ./auto/send_message 
