@@ -50,7 +50,7 @@ jobs:
       person: ${{ github.actor}}
       action_id: ${{ github.run_id }}
       webhook_url: ${{ secrets.WEBHOOK_URL }}
-    if: ${{ contains(join(needs.*.result, ','), 'failure') }}
+    if: ${{ always() && contains(join(needs.*.result, ','), 'failure') }}
     needs: [unit-test, build-image-and-push-to-docker-hub]
     steps:
       - uses: actions/checkout@v3
