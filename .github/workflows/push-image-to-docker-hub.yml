@@ -27,7 +27,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: ${{ env.docker_name }}
-          password: ${{ env.docker_password }}
+#          password: ${{ env.docker_password }}
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v2
