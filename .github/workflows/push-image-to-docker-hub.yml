@@ -41,12 +41,25 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
+#  send-message-to-bot:
+#    runs-on: ubuntu-latest
+#    env:
+#      webhook_url: ${{ secrets.WEBHOOK_URL }}
+#    if: ${{ always() && contains(needs.*.result, 'failure') }}
+#    needs: [unit-test, build-image-and-push-to-docker-hub]
+#    steps:
+#      - uses: actions/checkout@v3
+#      - run: ./auto/send_message
+
   send-message-to-bot:
     runs-on: ubuntu-latest
     env:
-      webhook_url: ${{ secrets.WEBHOOK_URL }}
-    if: ${{ always() && contains(needs.*.result, 'failure') }}
-    needs: [unit-test, build-image-and-push-to-docker-hub]
+      webhook_url: https://webhook.site/6d8c08ef-ff8f-4be8-9a39-993795afcd93
+      MONITOR_BRANCHES: ("main" "uat")
+    if: ${{ always() && contains(needs.*.result, 'failure') && contains(env.MONITOR_BRANCHES, github.ref_name) }}
+    needs: [unit-test, build-and-push]
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.ref }}
       - run: ./auto/send_message

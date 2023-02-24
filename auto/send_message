@@ -18,4 +18,5 @@ message_to_send() {
 EOF
 }
 
-curl -H "Content-Type: application/json" -X POST -d "$(message_to_send)" $(echo $webhook_url | base64 --decode)
+#curl -H "Content-Type: application/json" -X POST -d "$(message_to_send)" $(echo $webhook_url | base64 --decode)
+curl -H "Content-Type: application/json" -X POST -d "$(message_to_send)" $(webhook_url)
