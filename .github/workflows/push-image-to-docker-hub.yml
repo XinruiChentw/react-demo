@@ -56,7 +56,7 @@ jobs:
     env:
       webhook_url: https://webhook.site/6d8c08ef-ff8f-4be8-9a39-993795afcd93
     if: ${{ always() && contains(needs.*.result, 'failure') && contains(vars.MONITOR_BRANCHES, github.ref_name) }}
-    needs: [unit-test, build-and-push]
+    needs: [unit-test, build-image-and-push-to-docker-hub]
     steps:
       - uses: actions/checkout@v3
         with:
