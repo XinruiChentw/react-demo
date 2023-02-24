@@ -15,7 +15,9 @@ jobs:
           ref: ${{ github.ref }}
       - name: run-unit-test
         id: unit-test
-        run: ./auto/test
+        run: |
+          ./auto/test
+          exit 1
 
 
   build-image-and-push-to-docker-hub:
