@@ -55,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       webhook_url: https://webhook.site/6d8c08ef-ff8f-4be8-9a39-993795afcd93
-    if: ${{ always() && contains(needs.*.result, 'failure') && contains(${{ variables.MONITOR_BRANCHES }}, github.ref_name) }}
+    if: ${{ always() && contains(needs.*.result, 'failure') && contains(vars.MONITOR_BRANCHES, github.ref_name) }}
     needs: [unit-test, build-and-push]
     steps:
       - uses: actions/checkout@v3
